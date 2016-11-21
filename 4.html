@@ -1,0 +1,113 @@
+<html>
+   
+   <head>
+      <title>Angular JS Custom Directives</title>
+   </head>
+   
+   <body>
+      <h2>AngularJS Sample Application</h2>
+      
+      <div ng-app="japp1">
+      
+         <student studentId="101" studentName="Jagadeesh" > Hi Jagan</student>
+         
+         <br><br>
+         
+         <student studentId="102" studentName="Sundar" > Hello Sundar  </student>
+         
+      </div>
+		
+      <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+      
+
+      <script>
+         var mainApp = angular.module("japp1", []);
+         
+       //Create a directive, first parameter is the html element to be attached.	  
+       //We are attaching student html tag. 
+       //This directive will be activated as soon as any student element is encountered in html
+
+         
+         mainApp.directive('student', function() {
+        	
+        	//define the directive object
+            var directive = {};
+            
+          	//Only Element
+            directive.restrict = 'E';
+            
+          	//<student>...</student> inner html will be placed into the template, inside
+            directive.transclude= true;
+          	
+          	//<student> tag will not be replaced 
+		//<student>..//template goes here//...</student> will be placed as it is )
+            directive.replace= false;                 
+          	
+
+
+
+            //New HTML Template 
+            directive.template = 
+            	"<table>"+
+			      	"<tr><th>Student Id:</th><td> {{studentid}} </td></tr>"+
+			      	"<tr><th>Student Name:</th><td> {{studentname}} </td></tr>"+
+			      	"<tr><th>Description: </th><td> <ng-transclude></ng-transclude> </td></tr>"+
+			      "</table>";
+            
+            //scope
+            directive.scope = {
+            	studentid : "@",
+            	studentname : "@"
+            }
+
+            //Template Compilation
+            //If you have 'compile' //'link' should be retuned via this compile --norrmal 'link' will not work
+            /* 
+            directive.compile = function(element, attributes) {
+            	
+               element.css("color", "blue");
+               
+               var linkFunction = function($scope, element, attributes) {
+            	  //console.log(attributes);
+            	  //console.log(element.html());
+               }
+               
+               return linkFunction;
+            }
+             */
+            
+
+             //Template processing
+            directive.controller= function() {
+            	
+            	 //Controllers are useful when u have parent-child custom directives.
+            	//console.log("Im in Controller");
+            	
+            }
+			
+             
+             directive.link = function($scope, element, attributes) {
+            	  console.log($scope);
+            	  console.log(element);
+				  console.log(attributes);
+            	  
+            	   
+            	  element.css("color", "blue");
+                  element.children().css("background-color", "yellow");
+                  console.log(element.html());  //Final Output
+
+                  
+                  //You can also overide the template here
+                  //element.html("..........");
+                  
+            }
+            
+
+            //return the directive object
+            return directive;
+
+
+         });		
+      </script>
+   </body>
+</html>

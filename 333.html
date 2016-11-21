@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+ div{ padding: 20px; }  #grand-parent{ background-color:yellow; }  #parent{ background-color:blue; }  #child{ background-color:red; }
+</style>
+
+
+<!--
+	
+	EVENT - BUBBLING (stop Propagation)
+
+	--when u click 'grandChild'
+	event delegation goes:  grandChild -> will not be propagated
+-->
+
+
+
+<script>
+
+function load(){
+
+
+
+var grandParent = document.getElementById('grand-parent');
+grandParent.addEventListener("click", function(event){  event.stopPropagation();  alert('grandParent');});
+
+
+var parent = document.getElementById('parent');
+parent.addEventListener("click", function(event){  event.stopPropagation(); alert('parent');});
+
+
+var child = document.getElementById('child');
+child.addEventListener("click", function(event){  event.stopPropagation(); alert('child');});
+
+
+var grandChild = document.getElementById('grand-child');
+grandChild.addEventListener("click", function(event){  event.stopPropagation(); alert('grandChild');});
+
+
+
+}
+
+
+var alertFn = function(text){
+
+alert(text);
+
+};
+
+</script>
+
+</head>
+<body onload="load()">
+
+<div id="grand-parent">
+
+	<div id="parent" >
+	
+		<div id="child">
+			
+			
+			<button type="button" id="grand-child">Button</button>
+			
+		
+		<div>
+	
+	
+	</div>
+
+
+</div>
+
+</body>
+</html>
+

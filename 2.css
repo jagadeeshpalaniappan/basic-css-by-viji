@@ -1,0 +1,83 @@
+
+
+
+/* to remove "Default margin/padding" of all element */
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+ul{
+	list-style-type: none;
+}
+
+.container{
+	
+}
+
+
+.header{
+	background-color: yellow;
+	padding: 20px;
+}
+
+
+/* If we want to use, any of this, 'top, right, bottom, left' */
+
+/*  position: absolute; --from browser it calculates */
+/*  position: relative; --from element current place, it calculates */
+/* 	position: static; we cant use ('top, right, bottom, left) */
+
+.footer{
+	position: absolute;
+	bottom: 0;
+	background-color: yellow;
+	padding:10px;
+	width: 100%;
+    box-sizing: border-box;
+}
+
+
+.left{
+	float: left;
+	width: 20%;
+	box-sizing: border-box;
+	vertical-align: top;
+	background-color: #F2F2F2;
+	min-height: 850px;
+}
+
+.main{
+	float:left;
+	width: 59%;
+	box-sizing: border-box;
+	vertical-align: top;
+	background-color: #eee;
+}
+
+.right{
+	float:left;
+	width: 20%;
+	box-sizing: border-box;
+	vertical-align: top;
+	background-color: #F2F2F2;
+}
+
+.clearfix{
+	clear:both;
+}
+
+
+
+.left li{
+	padding: 10px;
+    background-color: green;
+	margin-top:10px;
+	
+}
+
+
+.left ul{
+	 margin: 30px;
+}
